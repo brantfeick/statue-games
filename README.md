@@ -1,24 +1,23 @@
 # statue-games
-Simple game hosting site using Statue
 
-## Developing
+A proof of concept demonstrating how Statue can be used to build a lightweight games hub. The project showcases a clean, nostalgic approach to web-based gaming without the usual clutter of modern game portals.
 
-Install dependencies and start a development server:
+## What This Is
 
-```sh
-npm install
-npm run dev
+This project started as an experiment to see whether Statue could handle a multi-page gaming site with minimal overhead. The result is a compact arcade hub that features simple, browser-based games like Tic-Tac-Toe, Brickbreaker, Crazy Eights, and Hot Dog Race. Each game lives on its own dedicated page, and the whole experience runs entirely in the browser with no accounts, no tracking, and no unnecessary complexity.
 
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
-```
+## Live Demo
 
-## Building
+You can play the games and explore the hub at https://statue-games.pages.dev
 
-To create a production version of your app:
+## Technical Approach
 
-```sh
-npm run build
-```
+The site was built using Statue, which proved well-suited for creating a static games hub with multiple routes and isolated game states. Each game operates independently on its own page, which keeps the codebase manageable and makes it easy to add new games without touching existing ones.
 
-You can preview the production build with `npm run preview`.
+The entire project is deployed on Cloudflare Pages, taking advantage of their edge network for fast load times. Since everything runs client-side, there's no backend infrastructure to maintain or scale.
+
+## Future Possibilities
+
+While this is primarily a proof of concept, the architecture makes it straightforward to expand. Adding new games means creating a new route and game component, then adding a card to the gallery. The pattern is repeatable, which was one of the goals from the start.
+
+The project could easily accommodate puzzle games, reflex challenges, or other lightweight interactive experiences that fit the "tiny internet games" philosophy.
