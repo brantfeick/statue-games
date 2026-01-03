@@ -12,6 +12,7 @@
   let phase = 'eating';
   let eatingProgress = 0;
   let raceProgress = 0;
+  let playerIsRacing = false;
   const maxEatingProgress = 100;
   const maxRaceProgress = 100;
 
@@ -35,8 +36,9 @@
   let opponentAnimationFrame = 0;
   let opponentEatingProgress = 0;
   let opponentRaceProgress = 0;
-  const opponentEatingSpeed = 0.4;
-  const opponentRaceSpeed = 0.35;
+  let opponentIsRacing = false;
+  const opponentEatingSpeed = 0.25;
+  const opponentRaceSpeed = 0.22;
 
   let winner = null; // 'player' | 'opponent' | null
   let gameStarted = false;
@@ -71,10 +73,15 @@
     lastKeyTime = now;
 
     // Update progress based on speed
-    if (phase === 'eating') {
+    if (!playerIsRacing) {
       eatingProgress = Math.min(maxEatingProgress, eatingProgress + currentSpeed * 0.8);
       playerEatingFrame = (playerEatingFrame + 1) % 4;
-    } else if (phase === 'racing') {
+
+      // Check if player finished eating
+      if (eatingProgress >= maxEatingProgress) {
+        playerIsRacing = true;
+      }
+    } else {
       raceProgress = Math.min(maxRaceProgress, raceProgress + currentSpeed);
       playerAnimationFrame = (playerAnimationFrame + 1) % 6;
     }
@@ -85,8 +92,10 @@
     countdown = 3;
     eatingProgress = 0;
     raceProgress = 0;
+    playerIsRacing = false;
     opponentEatingProgress = 0;
     opponentRaceProgress = 0;
+    opponentIsRacing = false;
     phase = 'eating';
     winner = null;
     playerX = 150;
@@ -285,74 +294,86 @@
     }
 
     // Update opponent
-    if (phase === 'eating') {
+    if (!opponentIsRacing) {
       opponentEatingProgress = Math.min(maxEatingProgress, opponentEatingProgress + opponentEatingSpeed);
-      if (opponentEatingProgress >= maxEatingProgress && eatingProgress >= maxEatingProgress) {
-        phase = 'racing';
-        playerX = 150;
-        opponentX = 150;
+      if (opponentEatingProgress >= maxEatingProgress) {
+        opponentIsRacing = true;
       }
-    } else if (phase === 'racing') {
+    } else {
       opponentRaceProgress = Math.min(maxRaceProgress, opponentRaceProgress + opponentRaceSpeed);
       opponentX = 150 + (opponentRaceProgress / maxRaceProgress) * 550;
       opponentAnimationFrame = (opponentAnimationFrame + 1) % 6;
+    }
 
+    // Update player position
+    if (playerIsRacing) {
       playerX = 150 + (raceProgress / maxRaceProgress) * 550;
+    }
 
-      // Check winner
-      if (raceProgress >= maxRaceProgress && !winner) {
-        winner = 'player';
-        phase = 'finished';
-      } else if (opponentRaceProgress >= maxRaceProgress && !winner) {
-        winner = 'opponent';
-        phase = 'finished';
-      }
+    // Update phase
+    if (playerIsRacing || opponentIsRacing) {
+      phase = 'racing';
+    }
+
+    // Check winner
+    if (raceProgress >= maxRaceProgress && !winner) {
+      winner = 'player';
+      phase = 'finished';
+    } else if (opponentRaceProgress >= maxRaceProgress && !winner) {
+      winner = 'opponent';
+      phase = 'finished';
     }
 
     // Draw track
     drawTrack();
 
-    // Draw eating phase
-    if (phase === 'eating') {
-      // Player hot dog
-      drawHotDog(200, playerY - 30, eatingProgress);
-      drawStickFigure(playerX, playerY, playerEatingFrame, true, false, '#10b981');
+    // Draw players based on their individual state
+    if (phase !== 'finished') {
+      // Player
+      if (!playerIsRacing) {
+        drawHotDog(200, playerY - 30, eatingProgress);
+        drawStickFigure(playerX, playerY, playerEatingFrame, true, false, '#10b981');
+      } else {
+        drawStickFigure(playerX, playerY, playerAnimationFrame, false, true, '#10b981');
+      }
 
-      // Opponent hot dog
-      drawHotDog(200, opponentY - 30, opponentEatingProgress);
-      drawStickFigure(opponentX, opponentY, Math.floor(opponentEatingProgress / 5) % 4, true, false, '#3b82f6');
-
-      // Progress bars
-      ctx.fillStyle = '#1e293b';
-      ctx.fillRect(50, 420, 700, 20);
-      ctx.fillStyle = '#10b981';
-      ctx.fillRect(50, 420, (eatingProgress / maxEatingProgress) * 700, 20);
-      ctx.fillStyle = '#3b82f6';
-      ctx.fillRect(50, 445, (opponentEatingProgress / maxEatingProgress) * 700, 20);
-
-      ctx.fillStyle = '#e2e8f0';
-      ctx.font = '14px sans-serif';
-      ctx.textAlign = 'left';
-      ctx.fillText('EAT THE HOT DOG!', 50, 410);
-    }
-
-    // Draw racing phase
-    if (phase === 'racing') {
-      drawStickFigure(playerX, playerY, playerAnimationFrame, false, true, '#10b981');
-      drawStickFigure(opponentX, opponentY, opponentAnimationFrame, false, true, '#3b82f6');
+      // Opponent
+      if (!opponentIsRacing) {
+        drawHotDog(200, opponentY - 30, opponentEatingProgress);
+        drawStickFigure(opponentX, opponentY, Math.floor(opponentEatingProgress / 5) % 4, true, false, '#3b82f6');
+      } else {
+        drawStickFigure(opponentX, opponentY, opponentAnimationFrame, false, true, '#3b82f6');
+      }
 
       // Progress bars
       ctx.fillStyle = '#1e293b';
       ctx.fillRect(50, 420, 700, 20);
-      ctx.fillStyle = '#10b981';
-      ctx.fillRect(50, 420, (raceProgress / maxRaceProgress) * 700, 20);
-      ctx.fillStyle = '#3b82f6';
-      ctx.fillRect(50, 445, (opponentRaceProgress / maxRaceProgress) * 700, 20);
+      ctx.fillRect(50, 445, 700, 20);
+
+      if (!playerIsRacing) {
+        ctx.fillStyle = '#10b981';
+        ctx.fillRect(50, 420, (eatingProgress / maxEatingProgress) * 700, 20);
+      } else {
+        ctx.fillStyle = '#10b981';
+        ctx.fillRect(50, 420, (raceProgress / maxRaceProgress) * 700, 20);
+      }
+
+      if (!opponentIsRacing) {
+        ctx.fillStyle = '#3b82f6';
+        ctx.fillRect(50, 445, (opponentEatingProgress / maxEatingProgress) * 700, 20);
+      } else {
+        ctx.fillStyle = '#3b82f6';
+        ctx.fillRect(50, 445, (opponentRaceProgress / maxRaceProgress) * 700, 20);
+      }
 
       ctx.fillStyle = '#e2e8f0';
       ctx.font = '14px sans-serif';
       ctx.textAlign = 'left';
-      ctx.fillText('RACE TO THE FINISH!', 50, 410);
+      if (phase === 'eating') {
+        ctx.fillText('EAT THE HOT DOG!', 50, 410);
+      } else {
+        ctx.fillText('RACE TO THE FINISH!', 50, 410);
+      }
     }
 
     // Draw finished state
@@ -369,13 +390,6 @@
       ctx.font = '16px sans-serif';
       ctx.fillText('Press SPACE to play again', WIDTH / 2, HEIGHT / 2 + 30);
     }
-
-    // Speed indicator
-    ctx.fillStyle = '#475569';
-    ctx.font = '12px sans-serif';
-    ctx.textAlign = 'left';
-    ctx.fillText(`Speed: ${Math.round(currentSpeed * 10)}`, 10, 20);
-    ctx.fillText(`Streak: ${Math.round(keyStreak)}`, 10, 40);
 
     animationFrame = requestAnimationFrame(animate);
   }
