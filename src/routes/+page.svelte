@@ -43,7 +43,7 @@
           Tiny internet games, <span class="text-orange-500">tons of fun!</span>
         </h1>
         <p class="mt-3 max-w-xl text-base text-gray-700">
-          A compact hub for simple, nostalgic web games.
+          A small sample of simple, nostalgic web games.
         </p>
       </div>
     </div>
