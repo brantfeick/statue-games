@@ -202,7 +202,7 @@
           {#each board as cell, index}
             <button
               type="button"
-              class="flex items-center justify-center rounded-xl border border-slate-700 bg-slate-950/70 text-4xl font-semibold transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/80 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950 hover:border-emerald-400/60 hover:bg-slate-900/90 disabled:cursor-default disabled:hover:border-slate-700/80 disabled:hover:bg-slate-950/70"
+              class="aspect-square flex items-center justify-center rounded-xl border border-slate-700 bg-slate-950/70 text-4xl font-semibold transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/80 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950 hover:border-emerald-400/60 hover:bg-slate-900/90 disabled:cursor-default disabled:hover:border-slate-700/80 disabled:hover:bg-slate-950/70"
               on:click={() => handleCellClick(index)}
               disabled={cell !== null || winner !== null || turn !== 'player'}
             >
@@ -210,6 +210,8 @@
                 <span class="text-emerald-300 drop-shadow-[0_0_10px_rgba(16,185,129,0.65)]">X</span>
               {:else if cell === 'O'}
                 <span class="text-cyan-300 drop-shadow-[0_0_10px_rgba(34,211,238,0.65)]">O</span>
+              {:else}
+                <span class="opacity-0">X</span>
               {/if}
             </button>
           {/each}
@@ -218,5 +220,44 @@
     </div>
   </div>
 </div>
+
+{#if winner !== null}
+  <div class="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm" on:click={() => resetGame(false)}>
+    <div class="mx-4 w-full max-w-md rounded-2xl border border-slate-700 bg-slate-900 p-6 shadow-2xl shadow-black/50" on:click|stopPropagation>
+      <div class="text-center">
+        {#if winner === 'draw'}
+          <div class="mb-3 text-5xl">🤝</div>
+          <h2 class="text-2xl font-bold text-slate-100">It's a Draw!</h2>
+          <p class="mt-2 text-sm text-slate-400">Well played by both sides.</p>
+        {:else if winner === player}
+          <div class="mb-3 text-5xl">🎉</div>
+          <h2 class="text-2xl font-bold text-emerald-300">You Win!</h2>
+          <p class="mt-2 text-sm text-slate-400">Great job! You beat the computer.</p>
+        {:else}
+          <div class="mb-3 text-5xl">🤖</div>
+          <h2 class="text-2xl font-bold text-cyan-300">Computer Wins!</h2>
+          <p class="mt-2 text-sm text-slate-400">Better luck next time!</p>
+        {/if}
+      </div>
+
+      <div class="mt-6 space-y-2">
+        <button
+          type="button"
+          class="w-full rounded-lg bg-emerald-500/90 px-4 py-3 text-sm font-semibold text-slate-950 shadow shadow-emerald-500/40 transition hover:bg-emerald-400"
+          on:click={() => resetGame(false)}
+        >
+          Play Again (same starter)
+        </button>
+        <button
+          type="button"
+          class="w-full rounded-lg border border-slate-700 bg-slate-800/80 px-4 py-3 text-sm font-semibold text-slate-200 transition hover:bg-slate-700/80"
+          on:click={() => resetGame(true)}
+        >
+          Play Again (swap starter)
+        </button>
+      </div>
+    </div>
+  </div>
+{/if}
 
 
