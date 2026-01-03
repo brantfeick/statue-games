@@ -28,81 +28,69 @@
 </script>
 
 <svelte:head>
-  <title>Central Arcade Hub</title>
+  <title>GooseGames - Classic Web Games</title>
   <meta
     name="description"
-    content="A tiny hub for simple internet games — jump in and play right in your browser."
+    content="Play classic web games for free - Tic-Tac-Toe, Brickbreaker, Hot Dog Race and more!"
   />
 </svelte:head>
 
-<div class="relative">
-  <div class="pointer-events-none absolute inset-0 opacity-40 [mask-image:radial-gradient(circle_at_top,_black,_transparent)]">
-    <div class="absolute -left-20 top-0 h-80 w-80 rounded-full bg-emerald-500/20 blur-3xl" />
-    <div class="absolute right-0 top-40 h-80 w-80 rounded-full bg-cyan-500/20 blur-3xl" />
-  </div>
-
-  <section class="relative z-10">
+<div>
+  <section>
     <div class="max-w-3xl space-y-6">
       <div>
-        <h1 class="text-balance text-4xl font-semibold tracking-tight text-slate-50 sm:text-5xl">
-          Tiny internet games, <span class="text-emerald-300">tons of fun</span>.
+        <h1 class="text-balance text-4xl font-bold tracking-tight text-black sm:text-5xl">
+          Free Online Games, <span class="text-orange-500">Play Now!</span>
         </h1>
-        <p class="mt-3 max-w-xl text-sm text-slate-300 sm:text-base">
-          A compact hub for simple, nostalgic web games.
+        <p class="mt-3 max-w-xl text-base text-gray-700">
+          Classic web games from the early 2000s. No downloads, no signup required.
         </p>
       </div>
     </div>
   </section>
 
-  <section class="relative z-10 mt-8">
-    <div class="mb-4 flex items-baseline justify-between gap-3">
-      <div>
-        <h2 class="text-sm font-semibold uppercase tracking-[0.25em] text-slate-400">
-          Game Gallery
-        </h2>
-        <p class="mt-1 text-xs text-slate-500">
-          Click a card to open a dedicated page for that game.
-        </p>
-      </div>
+  <section class="mt-8">
+    <div class="mb-4">
+      <h2 class="text-lg font-bold text-black">
+        GAME GALLERY
+      </h2>
+      <p class="mt-1 text-sm text-gray-600">
+        Click a game to start playing
+      </p>
     </div>
 
     <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
       {#each games as game}
         <a
           href={game.path}
-          class="group relative overflow-hidden rounded-xl border border-slate-800 bg-slate-900/60 p-4 shadow-sm shadow-black/30 transition hover:-translate-y-0.5 hover:border-emerald-400/60 hover:bg-slate-900 hover:shadow-emerald-500/30"
+          class="group relative overflow-hidden rounded-lg border-2 border-gray-300 bg-white p-4 shadow-md transition hover:-translate-y-1 hover:border-orange-500 hover:shadow-lg"
         >
-          <div class="absolute inset-x-0 top-0 h-16 bg-gradient-to-b from-emerald-500/15 to-transparent opacity-0 transition group-hover:opacity-100" />
-
           <div class="relative flex items-start justify-between gap-2">
             <div>
-              <h3 class="text-sm font-semibold text-slate-50">
+              <h3 class="text-base font-bold text-black">
                 {game.name}
               </h3>
-              <p class="mt-1 line-clamp-3 text-xs text-slate-400">
+              <p class="mt-1 line-clamp-3 text-sm text-gray-700">
                 {game.description}
               </p>
             </div>
             {#if game.badge}
-              <span class="rounded-full bg-emerald-500/15 px-2 py-0.5 text-[0.6rem] font-semibold uppercase tracking-wide text-emerald-300 border border-emerald-400/40">
+              <span class="rounded bg-orange-500 px-2 py-0.5 text-[0.6rem] font-bold uppercase tracking-wide text-white border border-orange-600">
                 {game.badge}
               </span>
             {/if}
           </div>
 
-          <div class="relative mt-3 flex items-center justify-between text-[0.7rem] text-slate-500">
+          <div class="relative mt-3 flex items-center justify-between text-sm">
             <div class="flex items-center gap-2">
-              <span class="inline-flex items-center gap-1 rounded-full bg-slate-900/80 px-2 py-0.5">
-                <span class="h-1 w-1 rounded-full bg-emerald-300" />
+              <span class="inline-flex items-center gap-1 rounded bg-gray-200 px-2 py-0.5 text-xs font-semibold text-gray-700">
+                <span class="h-1.5 w-1.5 rounded-full bg-orange-500" />
                 {game.difficulty}
               </span>
-              <span class="hidden rounded-full bg-slate-900/80 px-2 py-0.5 sm:inline">
-                {game.vibe}
-              </span>
             </div>
-            <span class="inline-flex items-center gap-1 text-emerald-300 group-hover:text-emerald-200">
-              Play
-              <span class="transition group-hover:translate-x-0.5">↗</span>
+            <span class="inline-flex items-center gap-1 font-bold text-orange-500 group-hover:text-orange-600">
+              PLAY
+              <span class="transition group-hover:translate-x-0.5">►</span>
             </span>
           </div>
         </a>

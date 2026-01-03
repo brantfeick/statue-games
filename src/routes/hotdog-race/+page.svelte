@@ -405,7 +405,7 @@
 </script>
 
 <svelte:head>
-  <title>Hot Dog Race — Central Arcade</title>
+  <title>Hot Dog Race — GooseGames</title>
   <meta
     name="description"
     content="Eat a hot dog, then race 100m! Mash left/right keys as fast as you can in this stick figure button-mashing game."
@@ -417,34 +417,34 @@
     <div>
       <a
         href="/"
-        class="inline-flex items-center gap-1 text-xs font-medium text-slate-400 hover:text-slate-200"
+        class="inline-flex items-center gap-1 text-xs font-medium text-gray-700 hover:text-gray-900"
       >
         ← Back to games
       </a>
-      <h1 class="mt-3 text-2xl font-semibold tracking-tight text-slate-50 sm:text-3xl">
+      <h1 class="mt-3 text-2xl font-semibold tracking-tight text-black sm:text-3xl">
         Hot Dog Race
       </h1>
-      <p class="mt-1 text-xs text-slate-400 sm:text-sm">
+      <p class="mt-1 text-xs text-gray-700 sm:text-sm">
         Phase 1: Eat the hot dog. Phase 2: Race 100m. Mash
-        <span class="font-semibold text-emerald-300">LEFT/RIGHT</span> or
-        <span class="font-semibold text-emerald-300">A/D</span> keys rapidly!
+        <span class="font-semibold text-orange-300">LEFT/RIGHT</span> or
+        <span class="font-semibold text-orange-300">A/D</span> keys rapidly!
       </p>
     </div>
-    <div class="hidden text-right text-[0.7rem] text-slate-500 sm:block">
-      <div class="font-semibold uppercase tracking-[0.25em] text-slate-600">Controls</div>
+    <div class="hidden text-right text-[0.7rem] text-gray-600 sm:block">
+      <div class="font-semibold uppercase tracking-[0.25em] text-gray-500">Controls</div>
       <div>Alternate L/R rapidly</div>
     </div>
   </div>
 
   <div class="flex justify-center">
     <div
-      class="overflow-hidden rounded-2xl border border-slate-800 bg-slate-900/80 p-3 shadow-inner shadow-black/50"
+      class="overflow-hidden rounded-2xl border border-gray-300 bg-gray-100/80 p-3 shadow-inner shadow-black/50"
     >
       <canvas
         bind:this={canvas}
         width={800}
         height={500}
-        class="block max-w-full rounded-xl bg-slate-950"
+        class="block max-w-full rounded-xl bg-white"
       />
     </div>
   </div>
@@ -453,23 +453,23 @@
 
 {#if phase === 'finished' && winner !== null}
   <div class="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm" on:click={() => startGame()}>
-    <div class="mx-4 w-full max-w-md rounded-2xl border border-slate-700 bg-slate-900 p-6 shadow-2xl shadow-black/50" on:click|stopPropagation>
+    <div class="mx-4 w-full max-w-md rounded-2xl border border-gray-400 bg-gray-100 p-6 shadow-2xl shadow-black/50" on:click|stopPropagation>
       <div class="text-center">
         {#if winner === 'player'}
           <div class="mb-3 text-5xl">🏆</div>
-          <h2 class="text-2xl font-bold text-emerald-300">You Won!</h2>
-          <p class="mt-2 text-sm text-slate-400">You beat the computer to the finish line!</p>
+          <h2 class="text-2xl font-bold text-orange-300">You Won!</h2>
+          <p class="mt-2 text-sm text-gray-700">You beat the computer to the finish line!</p>
         {:else}
           <div class="mb-3 text-5xl">😔</div>
           <h2 class="text-2xl font-bold text-red-400">You Lost!</h2>
-          <p class="mt-2 text-sm text-slate-400">The computer finished first. Try again!</p>
+          <p class="mt-2 text-sm text-gray-700">The computer finished first. Try again!</p>
         {/if}
       </div>
 
       <div class="mt-6">
         <button
           type="button"
-          class="w-full rounded-lg bg-emerald-500/90 px-4 py-3 text-sm font-semibold text-slate-950 shadow shadow-emerald-500/40 transition hover:bg-emerald-400"
+          class="w-full rounded-lg bg-orange-500/90 px-4 py-3 text-sm font-semibold text-white shadow shadow-orange-500/40 transition hover:bg-orange-400"
           on:click={() => startGame()}
         >
           Play Again
