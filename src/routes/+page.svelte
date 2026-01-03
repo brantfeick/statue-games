@@ -40,10 +40,10 @@
     <div class="max-w-3xl space-y-6">
       <div>
         <h1 class="text-balance text-4xl font-bold tracking-tight text-black sm:text-5xl">
-          Free Online Games, <span class="text-orange-500">Play Now!</span>
+          Tiny internet games, <span class="text-orange-500">tons of fun!</span>
         </h1>
         <p class="mt-3 max-w-xl text-base text-gray-700">
-          Classic web games from the early 2000s. No downloads, no signup required.
+          A compact hub for simple, nostalgic web games.
         </p>
       </div>
     </div>
