@@ -28,10 +28,10 @@
 
   <footer class="border-t-2 border-gray-300 bg-gray-100 py-4 text-xs text-gray-600">
     <div class="mx-auto flex max-w-6xl flex-col items-center justify-between gap-2 px-4 sm:flex-row">
-      <span>{new Date().getFullYear()} GooseGames.</span>
-      <span class="text-[0.7rem] uppercase tracking-wider text-gray-500">
-        Classic web games
-      </span>
+      <span>Made by Brant Feick in <a href="https://statue.dev/" class="text-blue-600 hover:text-blue-800 font-semibold">Statue</a></span>
+      <a href="https://github.com/brantfeick/statue-games" class="text-gray-500 hover:text-gray-700 transition">
+        View on GitHub
+      </a>
     </div>
   </footer>
 </main>
