@@ -35,6 +35,7 @@
   let score = 0;
   let lives = 3;
   let paused = false;
+  let lifeLost = false;
   let gameOver = false;
   let gameWon = false;
 
@@ -59,6 +60,8 @@
   function resetGame() {
     score = 0;
     lives = 3;
+    paused = false;
+    lifeLost = false;
     gameOver = false;
     gameWon = false;
     paddleWidth = 90;
@@ -77,6 +80,7 @@
         resetGame();
       } else {
         paused = !paused;
+        lifeLost = false;
       }
     }
   }
@@ -162,7 +166,11 @@
       ctx.font = '18px system-ui, -apple-system, BlinkMacSystemFont, sans-serif';
       ctx.textAlign = 'center';
       ctx.textBaseline = 'middle';
-      ctx.fillText('Paused — press Space to resume', WIDTH / 2, HEIGHT / 2);
+      if (lifeLost) {
+        ctx.fillText(`You Have ${lives} ${lives === 1 ? 'Life' : 'Lives'} Remaining - Press Space to Continue`, WIDTH / 2, HEIGHT / 2);
+      } else {
+        ctx.fillText('Paused — press Space to resume', WIDTH / 2, HEIGHT / 2);
+      }
       ctx.textAlign = 'start';
       ctx.textBaseline = 'top';
     }
@@ -246,6 +254,7 @@
         } else {
           resetBallAndPaddle();
           paused = true;
+          lifeLost = true;
         }
       }
     }
@@ -264,6 +273,7 @@
     initBricks();
     resetBallAndPaddle();
     paused = false;
+    lifeLost = false;
     gameOver = false;
     gameWon = false;
 
