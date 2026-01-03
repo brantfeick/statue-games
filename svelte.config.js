@@ -19,7 +19,14 @@ const config = {
 
     // Prerender the home page, game pages will be SSR disabled
     prerender: {
-      entries: ['/']
+      entries: ['/'],
+      handleHttpError: ({ path, referrer, message }) => {
+        // Ignore 404s for static assets during prerender
+        if (path.match(/\.(png|jpg|jpeg|gif|svg|webp)$/)) {
+          return;
+        }
+        throw new Error(message);
+      }
     }
   }
 };
