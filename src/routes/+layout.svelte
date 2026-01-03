@@ -3,7 +3,7 @@
 </script>
 
 <main class="min-h-screen bg-white text-black">
-  <header class="border-b-2 border-blue-600 bg-blue-500">
+  <header class="border-b-2 border-blue-900 bg-blue-700">
     <div class="mx-auto flex max-w-6xl items-center justify-between px-4 py-3">
       <a href="/" class="flex items-center gap-3 hover:opacity-90 transition">
         <svg class="h-10 w-10" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -15,14 +15,14 @@
           <circle cx="23" cy="20" r="1.5" fill="white"/>
         </svg>
         <div>
-          <div class="text-xl font-bold text-orange-500">
-            GooseGames
+          <div class="text-xl font-bold">
+            <span class="text-white">Goose</span><span class="text-orange-500">Games</span>
           </div>
         </div>
       </a>
 
-      <nav class="hidden gap-4 text-sm font-medium text-white sm:flex">
-        <a href="/" class="rounded px-3 py-1 hover:bg-blue-600 transition">
+      <nav class="hidden gap-4 text-sm font-medium sm:flex">
+        <a href="https://statue.dev/" class="rounded px-3 py-1 text-orange-500 hover:text-orange-400 transition font-bold">
           Games
         </a>
       </nav>
