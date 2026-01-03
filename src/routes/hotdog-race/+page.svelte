@@ -310,18 +310,18 @@
       playerX = 150 + (raceProgress / maxRaceProgress) * 550;
     }
 
-    // Update phase
-    if (playerIsRacing || opponentIsRacing) {
-      phase = 'racing';
-    }
-
-    // Check winner
+    // Check winner first (before phase update)
     if (raceProgress >= maxRaceProgress && !winner) {
       winner = 'player';
       phase = 'finished';
     } else if (opponentRaceProgress >= maxRaceProgress && !winner) {
       winner = 'opponent';
       phase = 'finished';
+    }
+
+    // Update phase (only if game is not finished)
+    if (phase !== 'finished' && (playerIsRacing || opponentIsRacing)) {
+      phase = 'racing';
     }
 
     // Draw track
@@ -478,4 +478,3 @@
     </div>
   </div>
 {/if}
-
