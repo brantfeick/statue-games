@@ -19,15 +19,6 @@
       vibe: 'Old-school reflexes'
     },
     {
-      id: 'crazy-eights',
-      name: 'Crazy Eights',
-      description: 'Match rank or suit, play 8s as wild, and empty your hand before the computer.',
-      path: '/crazy-eights',
-      badge: 'CARDS',
-      difficulty: 'Medium',
-      vibe: 'Laid-back card night'
-    },
-    {
       id: 'hotdog-race',
       name: 'Hot Dog Race',
       description: 'Eat a hot dog, then race 100m! Mash left/right keys as fast as you can.',
