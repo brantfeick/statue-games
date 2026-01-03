@@ -7,7 +7,6 @@
       path: '/tic-tac-toe',
       badge: 'NEW',
       difficulty: 'Easy',
-      vibe: 'Coffee-break'
     },
     {
       id: 'brickbreaker',
@@ -16,7 +15,6 @@
       path: '/brickbreaker',
       badge: 'ARCADE',
       difficulty: 'Medium',
-      vibe: 'Old-school reflexes'
     },
     {
       id: 'hotdog-race',
@@ -25,7 +23,6 @@
       path: '/hotdog-race',
       badge: 'SPEED',
       difficulty: 'Hard',
-      vibe: 'Button-mashing chaos'
     }
   ];
 </script>
@@ -46,32 +43,13 @@
 
   <section class="relative z-10">
     <div class="max-w-3xl space-y-6">
-      <div class="inline-flex items-center gap-2 rounded-full border border-emerald-400/30 bg-emerald-500/10 px-3 py-1 text-xs font-medium text-emerald-200 shadow-sm shadow-emerald-500/40">
-        <span class="h-1.5 w-1.5 rounded-full bg-emerald-300 animate-pulse" />
-        LIVE ARCADE
-      </div>
-
       <div>
         <h1 class="text-balance text-4xl font-semibold tracking-tight text-slate-50 sm:text-5xl">
           Tiny internet games, <span class="text-emerald-300">tons of fun</span>.
         </h1>
         <p class="mt-3 max-w-xl text-sm text-slate-300 sm:text-base">
-          A compact hub for simple, nostalgic web games. No accounts, no clutter — just click a
-          tile and start playing in a dedicated game screen.
+          A compact hub for simple, nostalgic web games.
         </p>
-      </div>
-
-      <div class="flex flex-wrap items-center gap-3 text-xs text-slate-400">
-        <span class="inline-flex items-center gap-1 rounded-full border border-slate-700/80 bg-slate-900/70 px-2.5 py-1">
-          <span class="h-1.5 w-1.5 rounded-full bg-emerald-300" />
-          Single‑player
-        </span>
-        <span class="inline-flex items-center gap-1 rounded-full border border-slate-700/80 bg-slate-900/70 px-2.5 py-1">
-          2000s arcade vibes
-        </span>
-        <span class="inline-flex items-center gap-1 rounded-full border border-slate-700/80 bg-slate-900/70 px-2.5 py-1">
-          Runs in your browser
-        </span>
       </div>
     </div>
   </section>
@@ -129,21 +107,6 @@
           </div>
         </a>
       {/each}
-
-      <div class="flex flex-col justify-between rounded-xl border border-dashed border-slate-800/80 bg-slate-900/40 p-4 text-xs text-slate-500">
-        <div>
-          <div class="mb-1 text-[0.7rem] font-semibold uppercase tracking-[0.25em] text-slate-600">
-            Coming Soon
-          </div>
-          <p>
-            More quick-play games will appear here — think mini puzzlers, reflex tests, and other
-            tiny distractions.
-          </p>
-        </div>
-        <div class="mt-3 text-[0.7rem] text-slate-600">
-          This hub is intentionally small and cozy.
-        </div>
-      </div>
     </div>
   </section>
 </div>
