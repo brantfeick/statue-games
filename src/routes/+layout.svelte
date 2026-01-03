@@ -18,9 +18,9 @@
         </div>
       </a>
 
-      <nav class="hidden gap-4 text-sm font-medium sm:flex">
-        <a href="https://statue.dev/" class="flex items-center gap-2 px-4 py-2 rounded-lg bg-orange-500 hover:brightness-110 text-white text-sm font-medium transition-colors duration-200">
-          <img src="/statue.png" alt="Statue" class="h-5 w-5 object-contain" />
+      <nav class="hidden gap-3 text-sm font-medium sm:flex items-center">
+        <img src="/statue.png" alt="Statue" class="h-8 w-8 object-contain" />
+        <a href="https://statue.dev/" class="px-4 py-2 rounded-lg bg-orange-500 hover:brightness-110 text-white text-sm font-medium transition-colors duration-200">
           Built with Statue
         </a>
       </nav>
