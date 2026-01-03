@@ -166,21 +166,6 @@
       ctx.textAlign = 'start';
       ctx.textBaseline = 'top';
     }
-
-    if (gameOver || gameWon) {
-      ctx.fillStyle = 'rgba(15, 23, 42, 0.8)';
-      ctx.fillRect(0, 0, WIDTH, HEIGHT);
-      ctx.fillStyle = '#e5e7eb';
-      ctx.font = '22px system-ui, -apple-system, BlinkMacSystemFont, sans-serif';
-      ctx.textAlign = 'center';
-      ctx.textBaseline = 'middle';
-      ctx.fillText(gameWon ? 'All bricks cleared!' : 'Out of lives!', WIDTH / 2, HEIGHT / 2 - 10);
-      ctx.font = '14px system-ui, -apple-system, BlinkMacSystemFont, sans-serif';
-      ctx.fillStyle = '#a5b4fc';
-      ctx.fillText('Press Space to play again', WIDTH / 2, HEIGHT / 2 + 20);
-      ctx.textAlign = 'start';
-      ctx.textBaseline = 'top';
-    }
   }
 
   function collisionDetection() {
@@ -340,5 +325,33 @@
     </div>
   </div>
 </div>
+
+{#if gameOver || gameWon}
+  <div class="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm" on:click={() => resetGame()}>
+    <div class="mx-4 w-full max-w-md rounded-2xl border border-slate-700 bg-slate-900 p-6 shadow-2xl shadow-black/50" on:click|stopPropagation>
+      <div class="text-center">
+        {#if gameWon}
+          <div class="mb-3 text-5xl">🎉</div>
+          <h2 class="text-2xl font-bold text-emerald-300">You Won!</h2>
+          <p class="mt-2 text-sm text-slate-400">All bricks cleared! Final score: {score}</p>
+        {:else}
+          <div class="mb-3 text-5xl">💔</div>
+          <h2 class="text-2xl font-bold text-red-400">Game Over!</h2>
+          <p class="mt-2 text-sm text-slate-400">You ran out of lives. Final score: {score}</p>
+        {/if}
+      </div>
+
+      <div class="mt-6">
+        <button
+          type="button"
+          class="w-full rounded-lg bg-emerald-500/90 px-4 py-3 text-sm font-semibold text-slate-950 shadow shadow-emerald-500/40 transition hover:bg-emerald-400"
+          on:click={() => resetGame()}
+        >
+          Play Again
+        </button>
+      </div>
+    </div>
+  </div>
+{/if}
 
 
