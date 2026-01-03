@@ -15,7 +15,7 @@
       </a>
 
       <nav class="hidden gap-4 text-sm font-medium sm:flex">
-        <a href="https://statue.dev/" class="rounded px-3 py-1 text-orange-500 hover:text-orange-400 transition font-bold">
+        <a href="https://statue.dev/" class="px-4 py-2 rounded-lg bg-orange-500 hover:brightness-110 text-white text-sm font-medium transition-colors duration-200">
           Built with Statue
         </a>
       </nav>
