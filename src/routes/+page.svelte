@@ -82,7 +82,7 @@
           <div class="relative mt-3 flex items-center justify-between text-sm">
             <div class="flex items-center gap-2">
               <span class="inline-flex items-center gap-1 rounded bg-gray-200 px-2 py-0.5 text-xs font-semibold text-gray-700">
-                <span class="h-1.5 w-1.5 rounded-full bg-orange-500" />
+                <span class="h-1.5 w-1.5 rounded-full {game.difficulty === 'Easy' ? 'bg-green-500' : game.difficulty === 'Medium' ? 'bg-yellow-500' : 'bg-red-500'}" />
                 {game.difficulty}
               </span>
             </div>
