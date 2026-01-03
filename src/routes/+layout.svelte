@@ -18,8 +18,8 @@
       </a>
 
       <nav class="hidden gap-4 text-xs font-medium tracking-wide text-slate-300 sm:flex">
-        <a href="/" class="rounded px-3 py-1 hover:bg-slate-800/70 hover:text-white">
-          Games
+        <a href="https://statue.dev/" class="rounded px-3 py-1 hover:bg-slate-800/70 hover:text-white">
+          Built in Statue
         </a>
       </nav>
     </div>
