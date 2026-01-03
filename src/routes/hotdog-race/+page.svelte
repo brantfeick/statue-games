@@ -376,21 +376,6 @@
       }
     }
 
-    // Draw finished state
-    if (phase === 'finished') {
-      ctx.fillStyle = winner === 'player' ? '#10b981' : '#ef4444';
-      ctx.font = 'bold 36px sans-serif';
-      ctx.textAlign = 'center';
-      ctx.fillText(
-        winner === 'player' ? 'YOU WIN!' : 'YOU LOST!',
-        WIDTH / 2,
-        HEIGHT / 2 - 20
-      );
-      ctx.fillStyle = '#94a3b8';
-      ctx.font = '16px sans-serif';
-      ctx.fillText('Press SPACE to play again', WIDTH / 2, HEIGHT / 2 + 30);
-    }
-
     animationFrame = requestAnimationFrame(animate);
   }
 
@@ -464,19 +449,33 @@
     </div>
   </div>
 
-  <div class="mt-6 rounded-xl border border-slate-800 bg-slate-900/70 p-4 text-xs text-slate-300">
-    <div class="mb-2 text-[0.65rem] font-semibold uppercase tracking-[0.25em] text-slate-500">
-      How to Play
-    </div>
-    <ul class="space-y-1 text-slate-400">
-      <li>• Press <span class="font-semibold text-emerald-300">SPACE</span> to start</li>
-      <li>
-        • Rapidly alternate between <span class="font-semibold text-emerald-300">LEFT</span> and
-        <span class="font-semibold text-emerald-300">RIGHT</span> (or A/D) keys
-      </li>
-      <li>• Faster button mashing = faster eating and running</li>
-      <li>• Finish eating first, then race to the finish line!</li>
-    </ul>
-  </div>
 </div>
+
+{#if phase === 'finished' && winner !== null}
+  <div class="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm" on:click={() => startGame()}>
+    <div class="mx-4 w-full max-w-md rounded-2xl border border-slate-700 bg-slate-900 p-6 shadow-2xl shadow-black/50" on:click|stopPropagation>
+      <div class="text-center">
+        {#if winner === 'player'}
+          <div class="mb-3 text-5xl">🏆</div>
+          <h2 class="text-2xl font-bold text-emerald-300">You Won!</h2>
+          <p class="mt-2 text-sm text-slate-400">You beat the computer to the finish line!</p>
+        {:else}
+          <div class="mb-3 text-5xl">😔</div>
+          <h2 class="text-2xl font-bold text-red-400">You Lost!</h2>
+          <p class="mt-2 text-sm text-slate-400">The computer finished first. Try again!</p>
+        {/if}
+      </div>
+
+      <div class="mt-6">
+        <button
+          type="button"
+          class="w-full rounded-lg bg-emerald-500/90 px-4 py-3 text-sm font-semibold text-slate-950 shadow shadow-emerald-500/40 transition hover:bg-emerald-400"
+          on:click={() => startGame()}
+        >
+          Play Again
+        </button>
+      </div>
+    </div>
+  </div>
+{/if}
 
