@@ -6,7 +6,7 @@
       description: 'Play classic 3×3 Tic-Tac-Toe against a simple computer opponent.',
       path: '/tic-tac-toe',
       difficulty: 'Easy',
-      icon: 'tictactoe'
+      image: '/tic-tac-toe.png'
     },
     {
       id: 'brickbreaker',
@@ -14,7 +14,7 @@
       description: 'Move your paddle, keep the ball in play, and clear all the bricks.',
       path: '/brickbreaker',
       difficulty: 'Medium',
-      icon: 'bricks'
+      image: '/brick-breaker.png'
     },
     {
       id: 'hotdog-race',
@@ -22,45 +22,9 @@
       description: 'Eat a hot dog, then race 100m! Mash left/right keys as fast as you can.',
       path: '/hotdog-race',
       difficulty: 'Hard',
-      icon: 'hotdog'
+      image: '/hot-dog-race.png'
     }
   ];
-
-  function getGameIcon(iconType) {
-    const icons = {
-      tictactoe: `<svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <rect x="28" y="10" width="4" height="60" fill="#f97316"/>
-        <rect x="48" y="10" width="4" height="60" fill="#f97316"/>
-        <rect x="10" y="28" width="60" height="4" fill="#f97316"/>
-        <rect x="10" y="48" width="60" height="4" fill="#f97316"/>
-        <circle cx="19" cy="19" r="6" stroke="#2563eb" stroke-width="3" fill="none"/>
-        <path d="M 34 34 L 46 46 M 46 34 L 34 46" stroke="#ef4444" stroke-width="3" stroke-linecap="round"/>
-        <circle cx="59" cy="19" r="6" stroke="#2563eb" stroke-width="3" fill="none"/>
-      </svg>`,
-      bricks: `<svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <rect x="10" y="10" width="15" height="8" fill="#ef4444" stroke="#000" stroke-width="1"/>
-        <rect x="27" y="10" width="15" height="8" fill="#f97316" stroke="#000" stroke-width="1"/>
-        <rect x="44" y="10" width="15" height="8" fill="#eab308" stroke="#000" stroke-width="1"/>
-        <rect x="61" y="10" width="15" height="8" fill="#22c55e" stroke="#000" stroke-width="1"/>
-        <rect x="18" y="20" width="15" height="8" fill="#3b82f6" stroke="#000" stroke-width="1"/>
-        <rect x="35" y="20" width="15" height="8" fill="#8b5cf6" stroke="#000" stroke-width="1"/>
-        <rect x="52" y="20" width="15" height="8" fill="#ec4899" stroke="#000" stroke-width="1"/>
-        <circle cx="40" cy="55" r="5" fill="#fff" stroke="#000" stroke-width="2"/>
-        <rect x="25" y="65" width="30" height="5" rx="2" fill="#22c55e" stroke="#000" stroke-width="1"/>
-      </svg>`,
-      hotdog: `<svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <ellipse cx="40" cy="40" rx="28" ry="12" fill="#fbbf24" stroke="#000" stroke-width="2"/>
-        <rect x="15" y="35" width="50" height="10" fill="#dc2626" stroke="#000" stroke-width="1.5"/>
-        <path d="M 20 40 Q 25 37 30 40 Q 35 43 40 40 Q 45 37 50 40 Q 55 43 60 40" stroke="#eab308" stroke-width="2" fill="none"/>
-        <path d="M 55 25 L 60 20 M 60 20 L 65 25 M 60 20 L 60 15" stroke="#f97316" stroke-width="3" stroke-linecap="round"/>
-        <circle cx="20" cy="55" r="3" fill="#6b7280"/>
-        <circle cx="32" cy="58" r="3" fill="#6b7280"/>
-        <circle cx="48" cy="58" r="3" fill="#6b7280"/>
-        <circle cx="60" cy="55" r="3" fill="#6b7280"/>
-      </svg>`
-    };
-    return icons[iconType] || '';
-  }
 </script>
 
 <svelte:head>
@@ -110,8 +74,8 @@
                 {game.description}
               </p>
             </div>
-            <div class="flex-shrink-0 w-16 h-16 rounded-lg border-2 border-orange-500 bg-orange-50 p-2 shadow-sm">
-              {@html getGameIcon(game.icon)}
+            <div class="flex-shrink-0 w-20 h-20 rounded-lg border-2 border-orange-500 bg-white p-1 shadow-sm overflow-hidden">
+              <img src={game.image} alt={game.name} class="w-full h-full object-cover rounded" />
             </div>
           </div>
 
